@@ -1,0 +1,80 @@
+1、基本生命周期 （补充）
+2、URL
+    /index/ index
+    /list/(\d+) index()
+    /list/(\d+) name='li' index() 反生成url
+    /list/(\d+) include index()
+
+3、views
+    request.body
+        request.POST.get|getlist
+        request.GET.get|getlist
+        request.FILES.get|getlist
+
+    request.Meta()
+        request.path_info
+        request.COOKIES
+        request.method(POST,GET,PUT,DELETE....)
+
+    request.body
+
+    return HttpResponse('adadfadadsd')
+           render,
+           redirect
+
+4.Model 操作（原生SQL)
+    表内容操作:
+        models.TB.objects.create()
+        obj = models.TB(..)
+        obj.save
+
+        切片
+        models.TB.objects.all()[7:10]
+
+        models.TB.objects.all().delete()
+        models.TB.objects.all().order_bu('')
+        models.TB.objects.distinct()
+
+        models.TB.objects.filter().update()
+        models.TB.objects.filter(id__in=[1,2,3])
+        models.TB.objects.filter().update().first()
+        models.TB.objects.filter(**(dic)).delete()
+        models.TB.objects.values
+        models.TB.objects.value_list
+        models.TB.objects.get
+        models.TB.objects.filter().count
+        models.TB.objects.filter(双下划线跨表).count
+        models.TB.objects.filter(id__range=[1,5])
+        models.TB.objects.filter(id__gt=1).count
+        models.TB.objects.filter(id__lt=1).count
+        models.TB.objects.filter(id__lte=1).count
+        models.TB.objects.exclude(id__gte=1).count
+
+        多对多
+
+        obj.set
+        obj.add(1,2,3)
+        obj.add([1,2,3])
+        obj.remove([1,2,3])
+        obj.clear()
+
+
+
+
+
+
+5、模板语言
+    a.基本操作
+        def func(request):
+            return render(request,'index.html', {'val': [1,2,3]}
+
+        html:
+            <h1>{{ val.0 }}</h1>
+    b.继承
+        extends “/xx/layout.html” 模板继承路径
+    c.include
+        组件
+    d. simple_tag, filter
+        simple_tag 不可用于if else条件
+        filter 参数不可加空格
+
