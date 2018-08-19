@@ -1,0 +1,26 @@
+内容详情：
+    1、session
+        基于Cookie做用户验证时：敏感信息不适合放在cookie中
+
+
+        a.Session原理
+
+            Cookie是保存在用户浏览器端的键值对
+            Session是奥存在服务器端的键值对
+
+
+        b.Cookie和Session对比
+
+
+
+        c. Session配置（缺少cache)
+
+
+
+        d. 示例：实现两周自动登录
+            - request.session.set_expiry(60*10)
+            - SESSION_SAVE_EVERY_REQUEST = True
+
+
+        PS: cookie中不设置超时时间，则表示关闭浏览器自动清除
+
