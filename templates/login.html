@@ -6,9 +6,54 @@
 </head>
 <body>
     <form method="post" action="/login/">
+        {% csrf_token %}
         <input type="text" name="user" placeholder="用户名">
         <input type="password" name="pwd" placeholder="密码">
+        <span><input type="checkbox" name="remember" value="expire_time">
+                10天内免登陆
+        </span>
         <input type="submit" value="提交">
+
+        <input id="btn1" type="button" value="ajx提交1">
+        <input id="btn2" type="button" value="ajx提交2">
     </form>
+    <script src="/static/jquery-1.12.4.min.js"></script>
+    <script src="/static/jquery.cookie.js"></script>
+    <script>
+        $(function(){
+{#            $.ajaxSetup({#}
+{#               beforeSend: function(xhr, settings){#}
+{#                   xhr.setRequestHeader('X-CSRFtoken', $.cookie('csrftoken'))#}
+{#               }#}
+{#            });#}
+
+
+            $('#btn1').click(function() {
+                $.ajax({
+                    url: '/login/',
+                    type: 'POST',
+                    data: {'user': 'root', 'pwd': '123'},
+                    headers: {'X-CSRFtoken': $.cookie('csrftoken')},
+                    success: function(rt){
+
+                    }
+
+                })
+            });
+
+            $('#btn2').click(function() {
+                $.ajax({
+                    url: '/login',
+                    type: 'POST',
+                    data: {'user': 'root', 'pwd': '123'},
+{#                    headers: {'X-CSRFtoken': $.cookie('csrftoken')},#}
+                    success: function(rt){
+
+                    }
+
+                })
+            })
+        })
+    </script>
 </body>
 </html>

@@ -1,13 +1,21 @@
 内容详情：
+    session 依赖于 cookie
+    简洁的流程：
+        用户来请求，登陆成功后，生成随机字符串，服务器端也保存起来，并且在保存起来的字符串里面也有个对应字典
+        防止当前用户的所有信息
+
     1、session
         基于Cookie做用户验证时：敏感信息不适合放在cookie中
 
 
         a.Session原理
-
             Cookie是保存在用户浏览器端的键值对
-            Session是奥存在服务器端的键值对
-
+            Session是保存在服务器端的键值对
+            session流程：
+                # 生成随机字符串
+                # 写到用户浏览器cookie
+                # 保存到session中
+                # 在随机字符串对应的字典中设置相关内容
 
         b.Cookie和Session对比
 
@@ -24,3 +32,11 @@
 
         PS: cookie中不设置超时时间，则表示关闭浏览器自动清除
 
+    2、session的5种类型
+        - 数据库（默认）
+        - 缓存 memcache(默认不支持redis)
+        - 文件
+        - 缓存+数据库（先到缓存找，没有再去数据库找，存到缓存）
+        - 加密cookie，其实就是cookie，加盐 salt
+
+    3.ajax csrf

@@ -1,0 +1,39 @@
+# 获取、设置、删除Session中数据
+request.session['k1']
+request.session.get('k1',None)
+request.session['k1'] = 123
+request.session.setdefault('k1',123) # 存在则不设置
+
+request.session.clear() 注销用户使用
+    相当于: request.session.delete(request.session.session_key)
+# 删除一个键值对
+del request.session['k1']
+# 删除当前用户的所有Session数据
+request.session.delete("session_key")
+3
+# 所有 键、值、键值对
+request.session.keys()
+request.session.values()
+request.session.items()
+request.session.iterkeys()
+request.session.itervalues()
+request.session.iteritems()
+
+
+# 用户session的随机字符串
+request.session.session_key
+
+# 将所有Session失效日期小于当前日期的数据删除(清理db中的脏数据)
+request.session.clear_expired()
+
+# 检查 用户session的随机字符串 在数据库中是否
+request.session.exists("session_key")
+
+# 删除当前用户的所有Session数据
+request.session.delete("session_key")
+
+request.session.set_expiry(value)
+    * 如果value是个整数，session会在些秒数后失效。
+    * 如果value是个datatime或timedelta，session就会在这个时间后失效。
+    * 如果value是0,用户关闭浏览器session就会失效。
+    * 如果value是None,session会依赖全局session失效策略。
