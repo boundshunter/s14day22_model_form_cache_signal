@@ -40,3 +40,4 @@
         - 加密cookie，其实就是cookie，加盐 salt
 
     3.ajax csrf
+        - 只有POST才需要csrf
